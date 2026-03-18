@@ -37,28 +37,35 @@ jobs:
         run: |
           python -m py_compile streamlit_app.py
           python -m py_compile main.py
-          python -m py_compile core/llm.py
-          python -m py_compile core/models.py
-          python -m py_compile core/state.py
-          python -m py_compile tools/input_validator.py
-          python -m py_compile tools/logger.py
-          python -m py_compile tools/llm_utils.py
-          python -m py_compile nodes/resume_scorer.py
-          python -m py_compile nodes/github_scorer.py
-          python -m py_compile nodes/decision_engine.py
+          python -m py_compile src/hr_agent/core/llm.py
+          python -m py_compile src/hr_agent/core/models.py
+          python -m py_compile src/hr_agent/core/state.py
+          python -m py_compile src/hr_agent/tools/input_validator.py
+          python -m py_compile src/hr_agent/tools/logger.py
+          python -m py_compile src/hr_agent/tools/llm_utils.py
+          python -m py_compile src/hr_agent/nodes/resume_scorer.py
+          python -m py_compile src/hr_agent/nodes/github_scorer.py
+          python -m py_compile src/hr_agent/nodes/decision_engine.py
 
       - name: Validate Pydantic models load correctly
         run: |
-          python -c "from core.models import (
+          python -c "
+          import sys
+          sys.path.insert(0, 'src/hr_agent')
+          from core.models import (
             ResumeExtractorOutput, ResumeScoreOutput,
             GitHubScoreOutput, SynthesizerOutput, FinalReviewOutput,
             PythonWorkerOutput, ReadmeWorkerOutput, InfraWorkerOutput,
             ConfigWorkerOutput, NotebookWorkerOutput
-          ); print('Models OK')"
+          )
+          print('Models OK')
+          "
 
       - name: Validate input validator
         run: |
           python -c "
+          import sys
+          sys.path.insert(0, 'src/hr_agent')
           from tools.input_validator import validate_job_description, validate_applied_role
 
           # valid JD
