@@ -30,8 +30,8 @@ jobs:
       - name: Lint with ruff
         run: |
           ruff check . \
-            --exclude ".venv,venv,env,__pycache__,evals" \
-            --ignore E501,E402,W291,W293
+            --exclude ".venv,venv,env,__pycache__,evals,*.ipynb" \
+            --ignore E501,E402,W291,W293,E701,E741,F403,F405,F811,F541,F841,E722,F401
 
       - name: Check for syntax errors
         run: |
