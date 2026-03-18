@@ -20,7 +20,7 @@ logs/
 # local dev files
 .env
 *.env.local
-.env.*
+
 
 # IDE
 .vscode
@@ -35,7 +35,7 @@ htmlcov/
 evals/
 sample_resumes/
 # docs
-*.md
+
 docs/
 
 # temp files

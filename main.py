@@ -78,7 +78,7 @@ Direct mentorship from senior AI engineers
 
 """
 
-RESUME_PATH  = "pdfresume.pdf"
+RESUME_PATH  = "./sample_resumes/pdfresume.pdf"
 APPLIED_ROLE = "AI Engineer"
 #THREAD_ID    = str(uuid.uuid4())
 
